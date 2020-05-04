@@ -32,10 +32,10 @@ class _SignupPageState extends State<SignupPage> {
   signup() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-
       try {
-        FirebaseUser user = await _auth.createUserWithEmailAndPassword(
-            email: _email, password: _password);
+        FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
+                email: _email, password: _password))
+            .user;
         if (user != null) {
           UserUpdateInfo updateuser = UserUpdateInfo();
           updateuser.displayName = _name;
